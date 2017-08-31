@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Custom Markers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        
+        #map {
+            height: 50%;
+            width: 50%;
+            margin: 0 auto;
+        }
+        
+        #weather span {
+            margin: 0 auto;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="weather"><span style="display: block !important; width: 320px; text-align: center; font-family: sans-serif; font-size: 12px;"><a href="http://www.wunderground.com/cgi-bin/findweather/getForecast?query=zmw:93940.1.99999&bannertypeclick=wu_clean2day" title="Monterey, California Weather Forecast" target="_blank"><img src="http://weathersticker.wunderground.com/weathersticker/cgi-bin/banner/ban/wxBanner?bannertype=wu_clean2day_cond&airportcode=KMRY&ForcedCity=Monterey&ForcedState=CA&zip=93940&language=EN" alt="Find more about Weather in Monterey, CA" width="300" /></a></span></div>
+    <div id="map"></div>
+    <script>
+        var map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: new google.maps.LatLng(-33.91722, 151.23064),
+                mapTypeId: 'roadmap'
+            });
+
+            var icons = {
+                info1: {
+                    icon: 'img/1.jpg',
+                },
+                info2: {
+                    icon: 'img/2.jpg'
+                },
+                info3: {
+                    icon: 'img/3.jpg'
+                }
+            };
+
+            function addMarker(feature) {
+                
+                var marker = new google.maps.Marker({
+                    position: feature.position,
+                    icon: icons[feature.type].icon,
+                    map: map,
+                    feature: feature
+                });
+                google.maps.event.addListener(marker, 'click', function() {
+                    console.log(this.feature.description);
+                });
+            }
+            
+            var features = [{
+                position: new google.maps.LatLng(-33.91721, 151.22630),
+                type: 'info1', description: "image0"
+            }, {
+                position: new google.maps.LatLng(-33.91539, 151.22820),
+                type: 'info1', description: "image1"
+            }, {
+                position: new google.maps.LatLng(-33.91747, 151.22912),
+                type: 'info1', description: "image2"
+            }, {
+                position: new google.maps.LatLng(-33.91910, 151.22907),
+                type: 'info2', description: "image3"
+            }, {
+                position: new google.maps.LatLng(-33.91725, 151.23011),
+                type: 'info2', description: "image4"
+            }, {
+                position: new google.maps.LatLng(-33.91872, 151.23089),
+                type: 'info2', description: "image5"
+            }, {
+                position: new google.maps.LatLng(-33.91784, 151.23094),
+                type: 'info2', description: "image6"
+            }, {
+                position: new google.maps.LatLng(-33.91682, 151.23149),
+                type: 'info3', description: "image7"
+            }, {
+                position: new google.maps.LatLng(-33.91790, 151.23463),
+                type: 'info3', description: "image8"
+            }, {
+                position: new google.maps.LatLng(-33.91666, 151.23468),
+                type: 'info3', description: "image9"
+            }, {
+                position: new google.maps.LatLng(-33.916988, 151.233640),
+                type: 'info1', description: "image10"
+            }, {
+                position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
+                type: 'info1', description: "image11"
+            }, {
+                position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
+                type: 'info1', description: "image12"
+            }, {
+                position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
+                type: 'info2', description: "image13"
+            }, {
+                position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
+                type: 'info2', description: "image14"
+            }, {
+                position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
+                type: 'info2', description: "image15"
+            }, {
+                position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
+                type: 'info2', description: "image16"
+            }, {
+                position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
+                type: 'info3', description: "image17"
+            }, {
+                position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
+                type: 'info3', description: "image18"
+            }];
+
+            for (var i = 0, feature; feature = features[i]; i++) {
+                addMarker(feature);
+            }
+
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDO6MhRKcBRhGrSZQAlwunxNRj2SE_rvpU&callback=initMap">
+    </script>
+</body>
+
+</html>
